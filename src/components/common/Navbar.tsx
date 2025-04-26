@@ -29,6 +29,7 @@ const allNavItems = [
   { name: "Users", href: "/users", icon: Users, roles: ["superadmin", "admin"] },
   { name: "Payouts", href: "/payouts", icon: CreditCard, roles: ["superadmin", "admin", "employee"] },
   { name: "Banners", href: "/banners", icon: Image, roles: ["superadmin", "admin"] },
+  { name: "Support", href: "/support", icon: Image, roles: ["superadmin", "admin", "employee"] },
 ];
 
 export default function Navbar() {

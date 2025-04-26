@@ -44,6 +44,7 @@ export default function Banners() {
   const addButtonRef = useRef<HTMLButtonElement>(null);
   const [open, setOpen] = useState(false);
   const token = useAuthStore().token
+  const [redirectUrl, setRedirectUrl] = useState('')
 
   const [loading, setLoading] = useState(true)
 
@@ -74,7 +75,8 @@ export default function Banners() {
           "authorization": token ?? ""
         },
         body: JSON.stringify({
-          imageUrl: uploadedImageUrl
+          imageUrl: uploadedImageUrl,
+          redirectUrl
         })
       });
 
@@ -130,7 +132,6 @@ export default function Banners() {
       else{
         toast('There was an error deleting file.')
       }
-    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     } catch (error) {
       console.log(error)
       toast('Theere was an error deleting file.')
@@ -149,7 +150,7 @@ export default function Banners() {
       }
       setLoading(false)
     })
-  }, [toast])
+  }, [])
 
   useEffect(() => {
     if (isAddingBanner && addButtonRef.current) {
@@ -184,6 +185,17 @@ export default function Banners() {
                 </DialogDescription>
               </DialogHeader>
               <div className="grid gap-4 py-4">
+              <div className="grid grid-cols-4 items-center gap-4">
+                  <Label htmlFor="title" className="text-right">
+                    Redirect Url
+                  </Label>
+                  <Input
+                    id="title"
+                    value={redirectUrl}
+                    onChange={(e) => setRedirectUrl(e.target.value)}
+                    className="col-span-3"
+                  />
+                </div>
                 <div className="grid grid-cols-4 items-center gap-4">
                   <Label htmlFor="image" className="text-right">
                     Image/GIF

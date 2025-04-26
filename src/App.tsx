@@ -8,6 +8,7 @@ import Admin from './components/admin/Admin';
 import Users from './components/users/User';
 import Payments from './components/payments/Payments';
 import Banners from './components/banner/Banners';
+import Support from './components/support/Support';
 
 const ProtectedRoute: React.FC<{ 
   element: React.ReactElement, 
@@ -39,6 +40,7 @@ function AppRoutes() {
       <Route path="/users" element={<ProtectedRoute element={<Users />} allowedRoles={['admin', 'superadmin']} />} />
       <Route path='/payouts' element={<ProtectedRoute element={<Payments/>} />} />
       <Route path="/banners" element={<ProtectedRoute element={<Banners />} />} />
+      <Route path="/support" element={<ProtectedRoute element={<Support/>} />} />
       {/* 
        */}
       {/* <Route path="/activity" element={<ProtectedRoute element={<Activity />} />} />
