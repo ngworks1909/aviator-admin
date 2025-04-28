@@ -9,6 +9,7 @@ import Users from './components/users/User';
 import Payments from './components/payments/Payments';
 import Banners from './components/banner/Banners';
 import Support from './components/support/Support';
+import Feedback from './components/feedback/Feedback';
 
 const ProtectedRoute: React.FC<{ 
   element: React.ReactElement, 
@@ -41,6 +42,7 @@ function AppRoutes() {
       <Route path='/payouts' element={<ProtectedRoute element={<Payments/>} />} />
       <Route path="/banners" element={<ProtectedRoute element={<Banners />} />} />
       <Route path="/support" element={<ProtectedRoute element={<Support/>} />} />
+      <Route path="/feedback" element={<ProtectedRoute element={<Feedback/>} />} />
       {/* 
        */}
       {/* <Route path="/activity" element={<ProtectedRoute element={<Activity />} />} />
