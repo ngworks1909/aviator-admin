@@ -47,7 +47,10 @@ export type User = {
   }
   bets: {
     amount: number
-    cashoutValue: number | null
+    cashoutValue: number | null,
+    room: {
+      maxRate: number
+    }
   }[]
 }
 
@@ -367,6 +370,12 @@ function BetsModal({ isOpen, onClose, bets, username }: BetsModalProps) {
                         </div>
                       </>
                     )}
+                    <>
+                        <div className="text-gray-500 dark:text-gray-400">Max Rate:</div>
+                        <div className="font-medium text-green-600 dark:text-green-400">
+                          {bet.room.maxRate}
+                        </div>
+                      </>
                   </div>
                 </div>
               ))}
