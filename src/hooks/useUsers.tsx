@@ -10,6 +10,7 @@ export function useUsers(limit = 10) {
   const [skip, setSkip] = useState(1)
   const [loading, setLoading] = useState(false)
   const [hasMore, setHasMore] = useState(true)
+  const [totalUser, setTotalUser] = useState(0)
   const token = useAuthStore.getState().token
   
   // Use a ref to track if we've already fetched initial data
@@ -32,8 +33,10 @@ export function useUsers(limit = 10) {
 
       if (!response.ok) throw new Error("Failed to fetch users.")
 
-      const data: {users: UserInterface[]} = await response.json()
+      const data: {users: UserInterface[], totalUsers: number} = await response.json()
       console.log(`Received ${data.users.length} users`)
+      setTotalUser(data.totalUsers
+      )
 
       if (data.users.length < limit) {
         setHasMore(false)
@@ -84,5 +87,6 @@ export function useUsers(limit = 10) {
     loading,
     hasMore,
     fetchMore,
+    totalUser
   }
 }

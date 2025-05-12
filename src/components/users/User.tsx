@@ -272,7 +272,7 @@ function UserStat({ icon: Icon, label, value, prefix, color }: UserStatProps) {
 }
 
 export default function Users() {
-  const { users, loading, fetchMore } = useUsers()
+  const { users, loading, fetchMore, totalUser } = useUsers()
   const [searchTerm, setSearchTerm] = useState("")
   const [suspendUserId, setSuspendUserId] = useState<string | null>(null)
   const [isSuspendDialogOpen, setIsSuspendDialogOpen] = useState(false)
@@ -337,7 +337,7 @@ export default function Users() {
           <div>
             <h1 className="text-3xl font-bold text-gray-900 dark:text-gray-100">Users</h1>
             <div className="text-lg text-gray-600 dark:text-gray-400 mt-2">
-              Total Users: {loading ? <Skeleton className="w-20 h-6 inline-block" /> : formatIndianNumber(users.length)}
+              Total Users: {loading ? <Skeleton className="w-20 h-6 inline-block" /> : totalUser}
             </div>
           </div>
           <div className="relative w-full md:w-64">
