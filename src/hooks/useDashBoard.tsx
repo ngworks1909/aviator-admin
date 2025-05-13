@@ -3,7 +3,8 @@ import { useEffect, useState } from "react"
 interface DashboardData {
   user: number
   deposited: number
-  payout: number
+  payout: number,
+  secured: number
 }
 
 export const useDashBoard = () => {
@@ -12,7 +13,8 @@ export const useDashBoard = () => {
     const [data, setData] = useState<DashboardData>({
       user: 0,
       deposited: 0,
-      payout: 0
+      payout: 0,
+      secured: 0
     })
     
     useEffect(() => {

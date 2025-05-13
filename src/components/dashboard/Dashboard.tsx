@@ -45,7 +45,7 @@ export default function Dashboard() {
           {/* Payments Collected Card */}
           <Card>
             <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-              <CardTitle className="text-sm font-medium">Payments Collected</CardTitle>
+              <CardTitle className="text-sm font-medium">Payments Secured</CardTitle>
               <DollarSign className="h-4 w-4 text-muted-foreground" />
             </CardHeader>
             <CardContent>
@@ -63,7 +63,7 @@ export default function Dashboard() {
                       maximumFractionDigits: 2,
                     })}
                   </div>
-                  <p className="text-xs text-muted-foreground mt-1">Total revenue collected</p>
+                  <p className="text-xs text-muted-foreground mt-1">Total revenue secured</p>
                 </>
               )}
             </CardContent>
@@ -91,6 +91,32 @@ export default function Dashboard() {
                     })}
                   </div>
                   <p className="text-xs text-muted-foreground mt-1">Total payouts processed</p>
+                </>
+              )}
+            </CardContent>
+          </Card>
+
+          <Card>
+            <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
+              <CardTitle className="text-sm font-medium">Payments Collected</CardTitle>
+              <DollarSign className="h-4 w-4 text-muted-foreground" />
+            </CardHeader>
+            <CardContent>
+              {loading ? (
+                <div className="space-y-2">
+                  <Skeleton className="h-8 w-3/4" />
+                  <Skeleton className="h-4 w-1/2" />
+                </div>
+              ) : (
+                <>
+                  <div className="text-3xl font-bold">
+                    ₹
+                    {data?.secured.toLocaleString(undefined, {
+                      minimumFractionDigits: 2,
+                      maximumFractionDigits: 2,
+                    })}
+                  </div>
+                  <p className="text-xs text-muted-foreground mt-1">Total payments collected</p>
                 </>
               )}
             </CardContent>
