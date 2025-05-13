@@ -35,7 +35,8 @@ export type UserInterface = {
     amount: number
     cashoutValue: number | null
     room: {
-      maxRate: number
+      maxRate: number,
+      createdAt: Date
     }
   }[]
 }
@@ -43,6 +44,27 @@ export type UserInterface = {
 function formatIndianNumber(num: number): string {
   return num.toLocaleString("en-IN")
 }
+
+function formatDateTime(dateString: Date) {
+  // Pad single digit numbers with leading zero
+  const date = new Date(dateString);
+  const pad = (n: number) => (n < 10 ? '0' + n : n);
+
+  const day = pad(date.getDate());
+  const month = pad(date.getMonth() + 1); // Months are 0-based
+  const year = date.getFullYear();
+
+  const val = date.getHours();
+
+  const hours = pad(val % 12 === 0 ? 12 : val % 12);
+  const minutes = pad(date.getMinutes());
+
+  const formattedDate = `${day}/${month}/${year}`;
+  const formattedTime = `${hours}:${minutes}`;
+
+  return { date: formattedDate, time: formattedTime, m: date.getHours() >= 12 ? "PM" : "AM" };
+}
+
 
 
 function UserCardSkeleton() {
@@ -130,6 +152,16 @@ function BetsModal({ isOpen, onClose, bets, username }: BetsModalProps) {
                         <div className="font-medium text-green-600 dark:text-green-400">
                           {bet.room.maxRate}
                         </div>
+                      </>
+
+                      <>
+                      <div className="text-gray-500 dark:text-gray-400">Created At:</div>
+                      <div className="font-medium">{formatDateTime(bet.room.createdAt).date}</div>
+                      </>
+
+                      <>
+                      <div className="text-gray-500 dark:text-gray-400">Time:</div>
+                      <div className="font-medium">{formatDateTime(bet.room.createdAt).time} {formatDateTime(bet.room.createdAt).m}</div>
                       </>
                   </div>
                 </div>
