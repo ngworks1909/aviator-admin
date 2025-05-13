@@ -35,10 +35,9 @@ export function useUsers(limit = 10) {
 
       const data: {users: UserInterface[], totalUsers: number} = await response.json()
       console.log(`Received ${data.users.length} users`)
-      setTotalUser(data.totalUsers
-      )
+      setTotalUser(data.totalUsers)
 
-      if (data.users.length < limit) {
+      if (data.users.length === totalUser) {
         setHasMore(false)
       } else {
         setHasMore(true)
